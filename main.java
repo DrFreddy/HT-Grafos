@@ -7,6 +7,7 @@ public static void main(String[] args) throws Exception
 		String linea="", textoC="";
 		String[] info,datos;
 		Represent_Graph_Adjacency_Matrix graph;
+		Grafo<Integer> grafo= new Grafo<Integer>();
 //*********************LECTURA DE CIUDADES********************
 		try{
       	File archivo = new File ("src\\ciudades.txt");
@@ -21,9 +22,6 @@ public static void main(String[] args) throws Exception
         	  cantLineas++;
           }//Cierre del while
           info=textoC.split("< ");
-          
-     
-         Grafo<Integer> grafo= new Grafo<Integer>();
          
           int contador=0;
           int nodos=0;
@@ -40,16 +38,24 @@ public static void main(String[] args) throws Exception
         	  }
         	  if(grafo.getCiudades().contains(datos[1]) == false){
         		  grafo.addNodo(datos[1]);
-        		  grafo.addVertice(grafo.getCiudades().indexOf(datos[0]), grafo.getCiudades().indexOf(datos[1]), Integer.parseInt(datos[2]));
-        		  graph.makeEdge(grafo.getCiudades().indexOf(datos[0]),grafo.getCiudades().indexOf(datos[1]),Integer.parseInt(datos[2]));
+        		  //grafo.addVertice(grafo.getCiudades().indexOf(datos[0]), grafo.getCiudades().indexOf(datos[1]), Integer.parseInt(datos[2]));
+        		  //graph.makeEdge(grafo.getCiudades().indexOf(datos[0]),grafo.getCiudades().indexOf(datos[1]),Integer.parseInt(datos[2]));
         	  }
         	  if((grafo.getCiudades().indexOf(datos[0])!= -1) && (grafo.getCiudades().indexOf(datos[0])!= -1)){
         		  grafo.addVertice(grafo.getCiudades().indexOf(datos[0]), grafo.getCiudades().indexOf(datos[1]), Integer.parseInt(datos[2]));
-        		  graph.makeEdge(grafo.getCiudades().indexOf(datos[0]),grafo.getCiudades().indexOf(datos[1]),Integer.parseInt(datos[2]));
+        		  //graph.makeEdge(grafo.getCiudades().indexOf(datos[0]),grafo.getCiudades().indexOf(datos[1]),Integer.parseInt(datos[2]));
         	  }
           }
           
-         
+         for(int i=0; i<grafo.getCiudades().capacity();i++){
+        	 int j=0;
+        	 SimplementeEnlazada<Integer> temp = grafo.getListas().get(i);
+        	 while(j<grafo.getListas().get(i).size()){
+        		 graph.makeEdge(i,temp.getFirst().get(0),temp.getFirst().get(1));
+        		 temp.removeFirst();
+        		 j++;
+         }
+         }
           
         
           /*  
