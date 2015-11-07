@@ -8,7 +8,8 @@ public static void main(String[] args) throws Exception
 		String[] info,datos;
 		Represent_Graph_Adjacency_Matrix graph;
 		Grafo<Integer> grafo= new Grafo<Integer>();
-//*********************LECTURA DE CIUDADES********************
+		  graph = new Represent_Graph_Adjacency_Matrix(grafo.getCiudades().capacity());
+//******************************************************LECTURA DE ARCHIVO *******************************************************
 		try{
       	File archivo = new File ("src\\ciudades.txt");
       	FileReader fr= new FileReader(archivo);
@@ -22,10 +23,10 @@ public static void main(String[] args) throws Exception
         	  cantLineas++;
           }//Cierre del while
           info=textoC.split("< ");
-         
+     
+//************************************************** LLENADO DEL GRAFO ***********************************************************
           int contador=0;
           int nodos=0;
-          graph = new Represent_Graph_Adjacency_Matrix(grafo.getCiudades().capacity());
           for (int i=0; i<info.length ; i++){
         	  datos= info[i].split(" ");
         	  /*System.out.println(datos[0]);
@@ -46,7 +47,8 @@ public static void main(String[] args) throws Exception
         		  //graph.makeEdge(grafo.getCiudades().indexOf(datos[0]),grafo.getCiudades().indexOf(datos[1]),Integer.parseInt(datos[2]));
         	  }
           }
-          
+         
+//******************************************** CREACION DE MATRIZ DE ADYACENCIA *********************************
          for(int i=0; i<grafo.getCiudades().capacity();i++){
         	 int j=0;
         	 SimplementeEnlazada<Integer> temp = grafo.getListas().get(i);
@@ -56,15 +58,8 @@ public static void main(String[] args) throws Exception
         		 j++;
          }
          }
-          
-        
-          /*  
-          for (int k=0; k< info.length; k++){
-        		datos= info[k].split(" ");
-        		graph.makeEdge(grafo.getCiudades().indexOf(datos[0]),grafo.getCiudades().indexOf(datos[1]),Integer.parseInt(datos[2]));
-        	}*/
-             
-          
+                   
+//********************************************* IMPRESION DE MATRIZ DE ADYACENCIA ¨**************************************************
           int v=grafo.getCiudades().capacity();
           System.out.println("The adjacency matrix for the given graph is: ");
           System.out.print("  ");
