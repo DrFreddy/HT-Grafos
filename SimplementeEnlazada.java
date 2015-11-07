@@ -36,6 +36,22 @@ public class SimplementeEnlazada<E> extends ListaAbstracta<E>{
 		return temporal.valor();
 	}
 
+	public ArrayList<E> remove(E label){
+		Nodo<E> temp= cabeza;
+		Nodo<E> anterior = null;
+		if(temp.valor().get(0)==label){
+			cabeza = cabeza.next();
+			return temp.valor();
+		}
+		while(temp.valor().get(0)!=label){
+			anterior=temp;
+			temp = temp.next();
+		}
+		anterior.setNext(temp.next());
+		return temp.valor();
+	}
+	
+	
 	public ArrayList<E> removeLast() {
 		// TODO Auto-generated method stub
 		Nodo<E> apuntador = cabeza;
