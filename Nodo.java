@@ -63,6 +63,7 @@ public class Nodo<E> {
 	 * @return el valor de la etiqueta 
 	 */
 	public ArrayList<E> valor(){
+		valores.clear();
 		valores.add(label);
 		valores.add(valor);
 		return valores;
