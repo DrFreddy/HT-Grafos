@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**Universidad Del Valle de Guatemala 
@@ -28,6 +29,11 @@ public class Grafo<E> {
 	
 	public Vector<SimplementeEnlazada<E>> getListas(){
 		return listas;
+	}
+	
+	public ArrayList<E> removeVertice(E ciudad, E label){
+		int index = ciudades.indexOf(ciudad);
+		return listas.get(index).remove(label);
 	}
 	
 	public void addNodo(String ciudad){
